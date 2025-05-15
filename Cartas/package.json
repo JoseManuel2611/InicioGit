@@ -1,0 +1,26 @@
+{
+  "name": "siete-y-medio-solitaire",
+  "version": "1.0.0",
+  "description": "A solitaire version of the card game '7 y 1/2'.",
+  "main": "src/app.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.0.0",
+    "ts-node": "^10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/siete-y-medio-solitaire.git"
+  },
+  "keywords": [
+    "solitaire",
+    "card game",
+    "typescript"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
