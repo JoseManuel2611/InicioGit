@@ -1,14 +1,14 @@
-let puntuacion = 0;
-let gameOver = false;
+let puntuacion: number = 0;
+let gameOver: boolean = false;
 
-const valoresCartas = [1,2,3,4,5,6,7,10,11,12];
+const valoresCartas: number[] = [1,2,3,4,5,6,7,10,11,12];
 
-function valorCarta(carta) {
+function valorCarta(carta: number): number {
   if (carta >= 10) return 0.5;
   return carta;
 }
 
-function urlCarta(carta) {
+function urlCarta(carta: number): string {
   switch (carta) {
     case 1:
       return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg";
@@ -35,43 +35,43 @@ function urlCarta(carta) {
   }
 }
 
-function muestraPuntuacion() {
+function muestraPuntuacion(): void {
   const scoreDiv = document.getElementById('score');
   if (scoreDiv) scoreDiv.textContent = `Puntuación: ${puntuacion}`;
 }
 
-function mostrarCarta(carta) {
-  const img = document.getElementById('card-img');
+function mostrarCarta(carta: number): void {
+  const img = document.getElementById('card-img') as HTMLImageElement;
   if (img) {
     img.src = urlCarta(carta);
   }
 }
 
-function mostrarCartaBocaAbajo() {
-  const img = document.getElementById('card-img');
+function mostrarCartaBocaAbajo(): void {
+  const img = document.getElementById('card-img') as HTMLImageElement;
   if (img) {
     img.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg";
   }
 }
 
-function dameCarta() {
+function dameCarta(): number {
   const idx = Math.floor(Math.random() * valoresCartas.length);
   return valoresCartas[idx];
 }
 
-function mostrarMensaje(msg) {
+function mostrarMensaje(msg: string): void {
   const msgDiv = document.getElementById('message');
   if (msgDiv) msgDiv.textContent = msg;
 }
 
-function setGameOver() {
+function setGameOver(): void {
   gameOver = true;
-  document.getElementById('draw-btn').disabled = true;
-  document.getElementById('stand-btn').disabled = true;
-  document.getElementById('restart-btn').style.display = 'inline';
+  (document.getElementById('draw-btn') as HTMLButtonElement).disabled = true;
+  (document.getElementById('stand-btn') as HTMLButtonElement).disabled = true;
+  (document.getElementById('restart-btn') as HTMLButtonElement).style.display = 'inline';
 }
 
-function pedirCarta() {
+function pedirCarta(): void {
   if (gameOver) return;
   const carta = dameCarta();
   mostrarCarta(carta);
@@ -83,7 +83,7 @@ function pedirCarta() {
   }
 }
 
-function plantarse() {
+function plantarse(): void {
   if (gameOver) return;
   setGameOver();
   if (puntuacion < 4) mostrarMensaje('Has sido muy conservador.');
@@ -93,21 +93,21 @@ function plantarse() {
   else mostrarMensaje(`Tu puntuación final es ${puntuacion}`);
 }
 
-function nuevaPartida() {
+function nuevaPartida(): void {
   puntuacion = 0;
   gameOver = false;
   muestraPuntuacion();
   mostrarCartaBocaAbajo();
   mostrarMensaje('');
-  document.getElementById('draw-btn').disabled = false;
-  document.getElementById('stand-btn').disabled = false;
-  document.getElementById('restart-btn').style.display = 'none';
+  (document.getElementById('draw-btn') as HTMLButtonElement).disabled = false;
+  (document.getElementById('stand-btn') as HTMLButtonElement).disabled = false;
+  (document.getElementById('restart-btn') as HTMLButtonElement).style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   muestraPuntuacion();
   mostrarCartaBocaAbajo();
-  document.getElementById('draw-btn').onclick = pedirCarta;
-  document.getElementById('stand-btn').onclick = plantarse;
-  document.getElementById('restart-btn').onclick = nuevaPartida;
+  (document.getElementById('draw-btn') as HTMLButtonElement).onclick = pedirCarta;
+  (document.getElementById('stand-btn') as HTMLButtonElement).onclick = plantarse;
+  (document.getElementById('restart-btn') as HTMLButtonElement).onclick = nuevaPartida;
 });
