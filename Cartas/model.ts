@@ -1,12 +1,6 @@
-export type Carta = {
-  valor: number;
-  url: string;
-  puntos: number;
-};
+export const valoresCartas = [1,2,3,4,5,6,7,10,11,12];
 
-export const valoresCartas: number[] = [1,2,3,4,5,6,7,10,11,12];
-
-export function urlCarta(carta: number): string {
+export function urlCarta(carta) {
   switch (carta) {
     case 1:
       return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg";
@@ -33,7 +27,7 @@ export function urlCarta(carta: number): string {
   }
 }
 
-export function valorCarta(carta: number): number {
+export function valorCarta(carta) {
   if (carta >= 10) return 0.5;
   return carta;
 }

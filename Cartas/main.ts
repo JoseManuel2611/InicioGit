@@ -1,10 +1,10 @@
-import { dameCarta, sumarPuntuacion, esGameOver, mensajeFinal } from "./motor";
-import { muestraPuntuacion, mostrarCarta, mostrarCartaBocaAbajo, mostrarMensaje, setGameOverUI, resetUI } from "./ui";
+import { dameCarta, sumarPuntuacion, esGameOver, mensajeFinal } from "./motor.js";
+import { muestraPuntuacion, mostrarCarta, mostrarCartaBocaAbajo, mostrarMensaje, setGameOverUI, resetUI } from "./ui.js";
 
-let puntuacion: number = 0;
-let gameOver: boolean = false;
+let puntuacion = 0;
+let gameOver = false;
 
-function pedirCarta(): void {
+function pedirCarta() {
   if (gameOver) return;
   const carta = dameCarta();
   mostrarCarta(carta);
@@ -17,14 +17,14 @@ function pedirCarta(): void {
   }
 }
 
-function plantarse(): void {
+function plantarse() {
   if (gameOver) return;
   setGameOverUI();
   mostrarMensaje(mensajeFinal(puntuacion));
   gameOver = true;
 }
 
-function nuevaPartida(): void {
+function nuevaPartida() {
   puntuacion = 0;
   gameOver = false;
   muestraPuntuacion(puntuacion);
@@ -36,7 +36,12 @@ function nuevaPartida(): void {
 document.addEventListener('DOMContentLoaded', () => {
   muestraPuntuacion(puntuacion);
   mostrarCartaBocaAbajo();
-  (document.getElementById('draw-btn') as HTMLButtonElement).onclick = pedirCarta;
-  (document.getElementById('stand-btn') as HTMLButtonElement).onclick = plantarse;
-  (document.getElementById('restart-btn') as HTMLButtonElement).onclick = nuevaPartida;
+  const drawBtn = document.getElementById('draw-btn');
+  if (drawBtn) drawBtn.onclick = pedirCarta;
+
+  const standBtn = document.getElementById('stand-btn');
+  if (standBtn) standBtn.onclick = plantarse;
+
+  const restartBtn = document.getElementById('restart-btn');
+  if (restartBtn) restartBtn.onclick = nuevaPartida;
 });

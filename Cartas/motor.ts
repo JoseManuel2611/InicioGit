@@ -1,19 +1,19 @@
-import { valoresCartas, valorCarta } from "./model";
+import { valoresCartas, valorCarta } from "./model.js";
 
-export function dameCarta(): number {
+export function dameCarta() {
   const idx = Math.floor(Math.random() * valoresCartas.length);
   return valoresCartas[idx];
 }
 
-export function sumarPuntuacion(puntuacion: number, carta: number): number {
+export function sumarPuntuacion(puntuacion, carta) {
   return +(puntuacion + valorCarta(carta)).toFixed(2);
 }
 
-export function esGameOver(puntuacion: number): boolean {
+export function esGameOver(puntuacion) {
   return puntuacion > 7.5;
 }
 
-export function mensajeFinal(puntuacion: number): string {
+export function mensajeFinal(puntuacion) {
   if (puntuacion < 4) return 'Has sido muy conservador.';
   if (puntuacion === 5) return 'Te ha entrado el canguelo eh?';
   if (puntuacion >= 6 && puntuacion < 7.5) return 'Casi casi...';
